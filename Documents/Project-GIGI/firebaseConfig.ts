@@ -1,23 +1,21 @@
-// IMPORTANT:
-// 1. Create a Firebase project at https://console.firebase.google.com/
-// 2. Go to Project Settings -> General tab.
-// 3. Scroll down to "Your apps" and click the "</>" (Web) icon to register a web app.
-// 4. After registering, Firebase will provide you with a config object.
-// 5. Copy the values from that object and paste them into the placeholders below.
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-export const firebaseConfig = {
-  // NOTE: To enable Firebase services, replace these placeholder values
-  // with your actual Firebase project configuration. If these values
-  // remain as placeholders, the app will run in local-only mode using IndexedDB.
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyBdSPXluDaF6C4UydWV-9mFWUo7iBG_saA",
+  authDomain: "gigi-time-machine.firebaseapp.com",
+  projectId: "gigi-time-machine",
+  storageBucket: "gigi-time-machine.firebasestorage.app",
+  messagingSenderId: "459534779564",
+  appId: "1:459534779564:web:6a0b708fc92d49683ecb09",
+  measurementId: "G-HZ5999MGQQ"
 };
 
-// This function checks if the config has been populated
-export const isFirebaseConfigured = () => {
-    return firebaseConfig.apiKey !== "YOUR_API_KEY" && firebaseConfig.projectId !== "YOUR_PROJECT_ID";
-};
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);

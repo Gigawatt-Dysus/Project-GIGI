@@ -1,4 +1,5 @@
-
+import { getFunctions, httpsCallable } from "firebase/functions";
+import { getApp } from "firebase/app";
 import { GoogleGenAI, FunctionDeclaration, Type, GenerateContentResponse } from "@google/genai";
 import type { ChatMessage, AiCompanion, LifeEvent, Tag, Media, User, GigiJournalEntry, Comment, PersonTag, ResponseLengthMode } from '../types';
 
@@ -864,4 +865,34 @@ export const generateForcedJournalEntry = async (
         console.error("Error generating forced journal entry:", error);
         return fallback;
     }
+    // ============================================================================
+//  CLOUD INTEGRATION (Added for Production Security)
+// ============================================================================
+
+/**
+ * Securely chats with Gigi using the Cloud Function (Genkit).
+ * This preserves your local prompt logic (getSystemInstruction) but executes it on the server.
+ */
+export const sendMessageToGigi = async (history: any[], newMessage: string, persona: string) => {
+  try {
+    // 1. Initialize the connection to your Cloud Functions
+    const functions = getFunctions(getApp());
+    
+    // 2. Connect to the specific function we named 'chatWithGigi' in the backend
+    const chatFunction = httpsCallable(functions, 'chatWithGigi');
+    
+    // 3. Send the data securey
+    const result = await chatFunction({
+      history: history,
+      message: newMessage,
+      persona: persona // <--- We pass your local persona prompt to the cloud!
+    });
+
+    // 4. Return the text
+    return (result.data as any).text;
+
+  } catch (error) {
+    console.error("Cloud Function Chat Failed:", error);
+    throw error;
+  }
 };
