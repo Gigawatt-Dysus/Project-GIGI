@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- START CHANGE: Added cache-control headers to prevent aggressive caching -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <!-- END CHANGE -->
+    <title>Project Gigi: AI Life Story Archivist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'gigi-blue': '#003b6f',
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              orbitron: ['Orbitron', 'sans-serif'],
+              tangerine: ['Tangerine', 'cursive'],
+              'mona-sans': ['Mona Sans', 'sans-serif'],
+            },
+            keyframes: {
+              dissolve: {
+                '0%': { opacity: '1', transform: 'scale(1)', filter: 'blur(0)' },
+                '100%': { opacity: '0', transform: 'scale(0.9)', filter: 'blur(5px)' },
+              },
+              toastIn: {
+                'from': { transform: 'translateX(100%)', opacity: '0' },
+                'to': { transform: 'translateX(0)', opacity: '1' },
+              }
+            },
+            animation: {
+              dissolve: 'dissolve 1.5s ease-out forwards',
+              toastIn: 'toastIn 0.5s ease-out forwards',
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@400;700&family=Tangerine:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://rsms.me/mona-sans/mona-sans.css">
+    <style>
+      body {
+        /* The font-family is now set on the body via the 'font-sans' Tailwind class */
+        /* Removed static background image; it will be replaced by the Vortex component */
+      }
+      /* The .font-orbitron class is now generated automatically by the Tailwind config */
+      .highlight-search-result {
+        transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+        box-shadow: 0 0 15px 5px rgba(167, 139, 250, 0.8);
+        transform: scale(1.01);
+      }
+      .text-glow {
+        text-shadow: 0 0 8px rgba(167, 139, 250, 0.7), 0 0 16px rgba(167, 139, 250, 0.5);
+      }
+      .ai-avatar-glow {
+        box-shadow: 0 0 8px 2px rgba(167, 139, 250, 0.6);
+      }
+      .button-glow {
+        box-shadow: 0 0 8px 2px rgba(167, 139, 250, 0.6), 0 0 16px 4px rgba(167, 139, 250, 0.3);
+      }
+    </style>
+    <!-- Firebase SDKs -->
+    <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.29.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "firebase/app": "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js",
+    "firebase/auth": "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js",
+    "firebase/firestore": "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js",
+    "firebase/": "https://aistudiocdn.com/firebase@^12.6.0/"
+  }
+}
+</script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body class="font-sans">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx?v=7"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
